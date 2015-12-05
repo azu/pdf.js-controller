@@ -180,51 +180,6 @@
   transition: width 0.05s linear;
 }
 
-// controller
-.controls {
-  position: absolute;
-  bottom: 1em;
-  right: 1em;
-
-  .arrow {
-    width: 0;
-    height: 0;
-    border: 2em solid #71E9F4;
-    float: left;
-    margin-right: 1em;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  .prev {
-    border-top-color: transparent;
-    border-right-width: 50px;
-    border-bottom-color: transparent;
-    border-left: 0 transparent;
-  }
-
-  .next {
-    border-top-color: transparent;
-    border-right: 0 transparent;
-    border-bottom-color: transparent;
-    border-left-width: 50px;
-  }
-
-  .prev:hover {
-    border-right-color: #13DAEC;
-    cursor: pointer;
-  }
-
-  .next:hover {
-    border-left-color: #13DAEC;
-    cursor: pointer;
-  }
-
-}
 // loading
 @-webkit-keyframes spin {
   from {

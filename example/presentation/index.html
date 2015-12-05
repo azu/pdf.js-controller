@@ -2,11 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Presentation</title>
     <link rel="stylesheet" href="./node_modules/pdf.js-controller/css/pdf-slide.css">
+    <style>
+        .controls {
+            position: absolute;
+            bottom: 1em;
+            right: 1em;
+        }
+
+        .controls .arrow {
+            width: 0;
+            height: 0;
+            border: 2em solid #71E9F4;
+            float: left;
+            margin-right: 1em;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .controls .prev {
+            border-top-color: transparent;
+            border-right-width: 50px;
+            border-bottom-color: transparent;
+            border-left: 0 transparent;
+        }
+
+        .controls .next {
+            border-top-color: transparent;
+            border-right: 0 transparent;
+            border-bottom-color: transparent;
+            border-left-width: 50px;
+        }
+
+        .controls .prev:hover {
+            border-right-color: #13DAEC;
+            cursor: pointer;
+        }
+
+        .controls .next:hover {
+            border-left-color: #13DAEC;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 <div id="pdf-container" class="pdf-page"></div>
+<div class="controls">
+    <div id="js-prev" class="arrow prev"></div>
+    <div id="js-next" class="arrow next"></div>
+</div>
 <script src="./build.js"></script>
 </body>
 </html>
