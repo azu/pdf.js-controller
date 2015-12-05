@@ -4,6 +4,8 @@ This library provide programming friendly usage of [mozilla/pdf.js](https://gith
 
 - Not official library
 - Load pdf and show
+- Display pdf as like presentation
+    - Provide controller interface
 - Copy text from pdf
 - Click link in pdf
 
