@@ -1,0 +1,59 @@
+{
+  "name": "pdf.js-controller",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/azu/pdf.js-controller.git"
+  },
+  "author": "azu",
+  "email": "azuciao@gmail.com",
+  "homepage": "https://github.com/azu/pdf.js-controller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/azu/pdf.js-controller/issues"
+  },
+  "version": "1.0.0",
+  "description": "provide controller and text layer for pdf.js",
+  "main": "lib/PDFJSConteroller.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "browserify -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
+    "watch": "watchify -d -v -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "brfs",
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "pdf.js/web/text_layer_builder": "TextLayerBuilder"
+  },
+  "keywords": [
+    "pdf",
+    "pdf.js",
+    "text",
+    "selection",
+    "presentation",
+    "slide"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.3.13",
+    "babel-plugin-add-module-exports": "^0.1.1",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "brfs": "^1.4.1",
+    "browserify": "^12.0.1",
+    "browserify-shim": "^3.8.11",
+    "pdf.js": "github:mozilla/pdf.js",
+    "watchify": "^3.6.1"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^1.3.56",
+    "domify": "^1.4.0"
+  }
+}

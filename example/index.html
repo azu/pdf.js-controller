@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./pdf-slide.css">
+</head>
+<body>
+<div id="pdf-container" class="pdf-page"></div>
+<script src="../build/PDFJSController.js"></script>
+<script>
+    var container = document.getElementById("pdf-container");
+    var controller = new PDFJSController({
+        container: container
+    });
+    controller.loadDocument("http://localhost:63342/pdf.js-controller/example/example.pdf").catch(function (error) {
+        console.error(error);
+    }).then(function(){
+        controller.nextPage();
+
+    });
+</script>
+</body>
+</html>
