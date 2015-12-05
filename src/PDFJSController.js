@@ -9,8 +9,16 @@ const TextLayerBuilder = require("./pdf.js-contrib/text_layer_builder").TextLaye
 
 const domify = require("domify");
 const domMap = require("./dom-map");
+const defaultInnerHTML = `<div class="pdf-slide-progress">
+    <div class="pdf-slide-progress-bar"></div>
+</div>
+<div class="pdf-loading"></div>
+<canvas class="pdf-canvas"></canvas>
+<div class="pdf-textLayer"></div>
+<div class="pdf-annotationLayer"></div>`;
+
 module.exports = class PDFJSController {
-    constructor({ container , pdfjsDistDir } = {}) {
+    constructor({ container, innerHTML, pageNumber, pdfjsDistDir } = {}) {
         this.pdfContainer = container;
         if (pdfjsDistDir) {
             const pdfjsDistDirWithoutSuffix = pdfjsDistDir.replace(/\/$/, "");
@@ -19,10 +27,10 @@ module.exports = class PDFJSController {
             global.PDFJS.cMapPacked = true;
         }
         this.pdfDoc = null;
-        this.pageNum = 1;
+        this.pageNum = pageNumber || 1;
         this.promiseQueue = Promise.resolve();
         this.pdfContainer = container;
-        var html = require("fs").readFileSync(__filename + ".hbs", "utf-8");
+        const html = innerHTML || defaultInnerHTML;
         var dom = domify(html);
         /*
          * @type {Object.<string, Node>}

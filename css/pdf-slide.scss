@@ -117,7 +117,7 @@
   }
 
   /* */
-  .slide-progress {
+  .pdf-slide-progress {
     position: absolute;
     top: 0;
     left: 0;
@@ -125,7 +125,7 @@
     height: 3px;
   }
 
-  .slide-progress-bar {
+  .pdf-slide-progress-bar {
     width: 0;
     height: 3px;
     background-color: #44a4dd;
@@ -165,12 +165,12 @@
 }
 
 /* progress bar */
-.slide-progress {
+.pdf-slide-progress {
   @extend %absolute-zero;
   height: 3px;
 }
 
-.slide-progress-bar {
+.pdf-slide-progress-bar {
   width: 0;
   height: 8px;
   background-color: #44a4dd;
