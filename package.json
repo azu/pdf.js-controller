@@ -25,7 +25,7 @@
   },
   "scripts": {
     "build": "npm run babel && npm run browserify",
-    "browserify": "browserify -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
+    "browserify": "browserify -s PDFJSController lib/PDFJSController.js -o build/PDFJSController.js",
     "babel": "babel src --out-dir lib --source-maps && cp src/*.hbs lib",
     "watch": "watchify -d -v -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
     "prepublish": "npm run --if-present build",
@@ -33,7 +33,6 @@
   },
   "browserify": {
     "transform": [
-      "babelify",
       "brfs"
     ]
   },
@@ -53,7 +52,6 @@
     "brfs": "^1.4.1",
     "browserify": "^12.0.1",
     "browserify-shim": "^3.8.11",
-    "pdf.js": "github:mozilla/pdf.js",
     "watchify": "^3.6.1"
   },
   "dependencies": {

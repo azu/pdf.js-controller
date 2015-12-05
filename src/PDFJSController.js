@@ -40,7 +40,7 @@ module.exports = class PDFJSController {
         this.fitItSize();
     }
 
-    static get events() {
+    static get Events() {
         return {
             "before_pdf_rendering": "before-pdf-rendering",
             "after_pdf_rendering": "after_pdf_rendering"
@@ -54,12 +54,12 @@ module.exports = class PDFJSController {
             that.domMapObject.loading.style.display = "none"
         }
 
-        that.pdfContainer.addEventListener(this.constructor.events.before_pdf_rendering, hideLoadingIcon);
+        that.pdfContainer.addEventListener(this.constructor.Events.before_pdf_rendering, hideLoadingIcon);
         return PDFJS.getDocument(url).then(function (pdfDoc_) {
             that.pdfDoc = pdfDoc_;
             return that.queueRenderPage(that.pageNum);
         }).then(() => {
-            that.pdfContainer.removeEventListener(this.constructor.events.before_pdf_rendering, hideLoadingIcon);
+            that.pdfContainer.removeEventListener(this.constructor.Events.before_pdf_rendering, hideLoadingIcon);
         });
     }
 
@@ -97,7 +97,7 @@ module.exports = class PDFJSController {
 
     renderPage(pageNum) {
         var that = this;
-        var beforeEvent = new CustomEvent(this.constructor.events.before_pdf_rendering, {
+        var beforeEvent = new CustomEvent(this.constructor.Events.before_pdf_rendering, {
             detail: this
         });
         this.pdfContainer.dispatchEvent(beforeEvent);
@@ -132,7 +132,7 @@ module.exports = class PDFJSController {
             });
         }).then(() => {
             that.updateProgress(pageNum);
-            var afterEvent = new CustomEvent(this.constructor.events.after_pdf_rendering, {
+            var afterEvent = new CustomEvent(this.constructor.Events.after_pdf_rendering, {
                 detail: this
             });
             that.pdfContainer.dispatchEvent(afterEvent);
