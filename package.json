@@ -13,12 +13,20 @@
   },
   "version": "1.0.0",
   "description": "provide controller and text layer for pdf.js",
-  "main": "lib/PDFJSConteroller.js",
+  "main": "./lib/PDFJSController.js",
+  "files":[
+    "build",
+    "css",
+    "lib",
+    "src"
+  ],
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "build": "browserify -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
+    "build": "npm run babel && npm run browserify",
+    "browserify": "browserify -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
+    "babel": "babel src --out-dir lib --source-maps && cp src/*.hbs lib",
     "watch": "watchify -d -v -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
     "prepublish": "npm run --if-present build",
     "test": "mocha"
@@ -26,12 +34,8 @@
   "browserify": {
     "transform": [
       "babelify",
-      "brfs",
-      "browserify-shim"
+      "brfs"
     ]
-  },
-  "browserify-shim": {
-    "pdf.js/web/text_layer_builder": "TextLayerBuilder"
   },
   "keywords": [
     "pdf",
