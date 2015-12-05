@@ -36,7 +36,7 @@ module.exports = class PDFJSController {
          * @type {Object.<string, Node>}
          */
         var mapping = {
-            progressBar: ".slide-progress-bar",
+            progressBar: ".pdf-slide-progress-bar",
             canvas: ".pdf-canvas",
             textLayer: ".pdf-textLayer",
             annotationLayer: ".pdf-annotationLayer",
