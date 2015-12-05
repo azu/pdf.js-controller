@@ -13,7 +13,9 @@ This library provide programming friendly usage of [mozilla/pdf.js](https://gith
 
 ## Usage
 
-- [ ] Write usage instructions
+### Create Presentation Viewer
+
+See [example/presentation](example/presentation)
 
 ## Tests
 
