@@ -28,8 +28,7 @@
     "browserify": "browserify -s PDFJSController lib/PDFJSController.js -o build/PDFJSController.js",
     "babel": "babel src --out-dir lib --source-maps",
     "watch": "watchify -d -v -s PDFJSController src/PDFJSController.js -o build/PDFJSController.js",
-    "prepublish": "npm run --if-present build",
-    "test": "mocha"
+    "prepublish": "npm run --if-present build"
   },
   "keywords": [
     "pdf",
