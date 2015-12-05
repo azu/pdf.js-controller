@@ -5,6 +5,7 @@ global.PDFJS = global.PDFJS || {};
 //const workerCode = require("fs").readFileSync(__dirname + '/../node_modules/pdfjs-dist/build/pdf.worker.js', "utf-8");
 require('pdfjs-dist/build/pdf.combined.js');
 require('pdfjs-dist/web/compatibility.js');
+require("custom-event-polyfill");
 const TextLayerBuilder = require('./pdf.js-contrib/text_layer_builder').TextLayerBuilder;
 const domify = require('domify');
 const domMap = require('./dom-map');
