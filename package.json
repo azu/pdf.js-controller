@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/azu/pdf.js-controller/issues"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "provide controller and text layer for pdf.js",
   "main": "./lib/PDFJSController.js",
   "files": [
