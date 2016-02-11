@@ -33,7 +33,7 @@ var PDFController = require("pdf.js-controller");
 var controller = new PDFController({
     container: container,
     // path to dir of pdfjs-dist
-    pdfDistDir: __dirname + "/node_modules/pdfjs-dist/"
+    pdfjsDistDir: __dirname + "/node_modules/pdfjs-dist/"
 });
 // path to URL of pdf.
 // Apply CORS to this path. It means that the URL should be same origin.
