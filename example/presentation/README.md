@@ -7,5 +7,13 @@
 
 ## Usage
 
+    npm start
+    open http://localhost:9080
 
-    open index.html # with local server
+## Limitation
+
+It don't work in `file://` scheme.
+It is come from XHR limitation.
+
+And, You should put pdf file in same origin place.
+
