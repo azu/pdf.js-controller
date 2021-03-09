@@ -15,6 +15,7 @@
     "static-server": "^2.0.2"
   },
   "dependencies": {
-    "pdf.js-controller": "../../"
+    "pdf.js-controller": "../../",
+    "pdfjs-dist": "^2.6.347"
   }
 }

@@ -1,12 +1,10 @@
 // LICENSE : MIT
 'use strict';
-global.PDFJS = global.PDFJS || {};
-//const stringToWorkerSrc = require("./string-to-worker-src");
-//const workerCode = require("fs").readFileSync(__dirname + '/../node_modules/pdfjs-dist/build/pdf.worker.js', "utf-8");
-require('pdfjs-dist/build/pdf.combined.js');
-require('pdfjs-dist/web/compatibility.js');
 require("custom-event-polyfill");
-const TextLayerBuilder = require('./pdf.js-contrib/text_layer_builder').TextLayerBuilder;
+require('pdfjs-dist/build/pdf.worker');
+const PDFJS = require('pdfjs-dist');
+global.PDFJS = PDFJS;
+const { TextLayerBuilder } = require('pdfjs-dist/web/pdf_viewer');
 const domify = require('domify');
 const domMap = require('./dom-map');
 const defaultInnerHTML = `<div class="pdf-slide-progress">
@@ -17,12 +15,12 @@ const defaultInnerHTML = `<div class="pdf-slide-progress">
 <div class="pdf-textLayer"></div>
 <div class="pdf-annotationLayer"></div>`;
 module.exports = class PDFJSController {
-    constructor({container, innerHTML, pageNumber, pdfjsDistDir}) {
+    constructor({ container, innerHTML, pageNumber, pdfjsDistDir }) {
         this.pdfContainer = container;
         if (pdfjsDistDir) {
             const pdfjsDistDirWithoutSuffix = pdfjsDistDir.replace(/\/$/, '');
-            global.PDFJS.workerSrc = `${ pdfjsDistDirWithoutSuffix }/build/pdf.worker.js`;
-            global.PDFJS.cMapUrl = `${ pdfjsDistDirWithoutSuffix }/cmaps/`;
+            global.PDFJS.workerSrc = `${pdfjsDistDirWithoutSuffix}/build/pdf.worker.js`;
+            global.PDFJS.cMapUrl = `${pdfjsDistDirWithoutSuffix}/cmaps/`;
             global.PDFJS.cMapPacked = true;
         }
         this.pdfDoc = null;
@@ -57,6 +55,7 @@ module.exports = class PDFJSController {
     loadDocument(url) {
         // load complete
         let loading = this.domMapObject.loading;
+
         function hideLoadingIcon() {
             loading.style.display = 'none';
         }
@@ -101,7 +100,7 @@ module.exports = class PDFJSController {
     }
 
     renderPage(pageNum) {
-        const beforeEvent = new CustomEvent(this.constructor.Events.before_pdf_rendering, {detail: this});
+        const beforeEvent = new CustomEvent(this.constructor.Events.before_pdf_rendering, { detail: this });
         this.pdfContainer.dispatchEvent(beforeEvent);
         // Using promise to fetch the page
         return this.pdfDoc.getPage(pageNum).then(page => {
@@ -135,7 +134,7 @@ module.exports = class PDFJSController {
             });
         }).then(() => {
             this._updateProgress(pageNum);
-            const afterEvent = new CustomEvent(this.constructor.Events.after_pdf_rendering, {detail: this});
+            const afterEvent = new CustomEvent(this.constructor.Events.after_pdf_rendering, { detail: this });
             this.pdfContainer.dispatchEvent(afterEvent);
         });
     }
@@ -162,13 +161,13 @@ module.exports = class PDFJSController {
             const numSlides = this.pdfDoc.numPages;
             let position = pageNum - 1;
             const percent = numSlides === 1 ? 100 : 100 * position / (numSlides - 1);
-            progressBar.style.width = `${ percent.toString() }%`;
+            progressBar.style.width = `${percent.toString()}%`;
         }
     }
 
     _setupAnnotations(page, viewport, annotationArea) {
         return page.getAnnotations().then(annotationsData => {
-            const cViewport = viewport.clone({dontFlip: true});
+            const cViewport = viewport.clone({ dontFlip: true });
             for (let i = 0; i < annotationsData.length; i++) {
                 const data = annotationsData[i];
                 if (!data || !data.hasHtml) {
@@ -183,13 +182,13 @@ module.exports = class PDFJSController {
                     rect[2],
                     view[3] - rect[3] + view[1]
                 ]);
-                element.style.left = `${ rect[0] }px`;
-                element.style.top = `${ rect[1] }px`;
+                element.style.left = `${rect[0]}px`;
+                element.style.top = `${rect[1]}px`;
                 element.style.position = 'absolute';
                 const transform = cViewport.transform;
-                const transformStr = `matrix(${ transform.join(',') })`;
+                const transformStr = `matrix(${transform.join(',')})`;
                 PDFJS.CustomStyle.setProp('transform', element, transformStr);
-                const transformOriginStr = `${ -rect[0] }px ${ -rect[1] }px`;
+                const transformOriginStr = `${-rect[0]}px ${-rect[1]}px`;
                 PDFJS.CustomStyle.setProp('transformOrigin', element, transformOriginStr);
                 if (data.subtype === 'Link' && !data.url) {
                     // In this example,  we do not handle the `Link` annotation without url.
