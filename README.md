@@ -2,12 +2,11 @@
 
 This library provide programming friendly usage of [mozilla/pdf.js](https://github.com/mozilla/pdf.js "mozilla/pdf.js").
 
-- Not official library
-- Load pdf and show
+- Load pdf and show page
 - Display pdf as like presentation
     - Provide controller interface
 - Copy text from pdf
-- Click link in pdf
+- Click-able link in pdf
 
 <img width="1342" alt="image" src="https://github.com/azu/pdf.js-controller/assets/19714/4276eaa6-6a71-4e88-bd60-4c6904c7a057">
 
