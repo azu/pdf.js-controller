@@ -9,7 +9,7 @@ This library provide programming friendly usage of [mozilla/pdf.js](https://gith
 - Copy text from pdf
 - Click link in pdf
 
-![slide](https://monosnap.com/file/MaOSPVD6tKMul2AUyppSJrKd7T63LD.png)
+<img width="1342" alt="image" src="https://github.com/azu/pdf.js-controller/assets/19714/4276eaa6-6a71-4e88-bd60-4c6904c7a057">
 
 ## Installation
 
